@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    meta.helm.sh/release-name: my-wordpress
+    meta.helm.sh/release-namespace: wordpress
+    pv.kubernetes.io/bound-by-controller: "yes"
+  creationTimestamp: "2024-06-05T12:38:21Z"
+  deletionGracePeriodSeconds: 0
+  deletionTimestamp: "2024-06-07T05:59:15Z"
+  finalizers:
+  - kubernetes.io/pv-protection
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: mysql-pv
+  resourceVersion: "528078"
+  uid: 9d07ab5a-67b4-484a-ba0c-3b7b5b5f27d2
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 512Mi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: mysql-pvc-wordpress-minikube-mysql-0
+    namespace: wordpresssss
+    resourceVersion: "433720"
+    uid: b4b7c7f3-f9c4-4900-b1eb-390d0c3fb099
+  local:
+    path: /tmp/tempmysql
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - minikube
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  volumeMode: Filesystem
+status:
+  lastPhaseTransitionTime: "2024-06-05T12:38:22Z"
+  phase: Bound

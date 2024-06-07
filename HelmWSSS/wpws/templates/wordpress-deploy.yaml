@@ -1,0 +1,66 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   creationTimestamp: null
+#   labels:
+#     app: wordpress
+#   name: wordpress
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: wordpress
+#   strategy: {}
+#   template:
+#     metadata:
+#       creationTimestamp: null
+#       labels:
+#         app: wordpress
+#     spec:
+#       containers:
+#       - image: wordpress:5.1.1-php7.3-apache
+#         name: wordpress
+#         resources: {}
+#         volumeMounts:
+#           - name: wordpress-storage
+#             mountPath: /var/www/html
+#       dnsPolicy: ClusterFirst
+#       restartPolicy: Always
+#       volumes:
+#         - name: wordpress-storage
+#           persistentVolumeClaim:
+#             claimName: wordpress-pvc
+# status: {}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: wordpress
+  name: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - image: wordpress:5.1.1-php7.3-apache
+        name: wordpress
+        resources: {}
+        volumeMounts:
+          - name: wordpress-storage
+            mountPath: /var/www/html
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      volumes:
+        - name: wordpress-storage
+          persistentVolumeClaim:
+            claimName: wordpress-pvc-wpws
+status: {}
